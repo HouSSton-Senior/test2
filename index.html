@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тарологический портрет</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marmelad&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="matrix-background"></div>
+    
+    <!-- Обновлённый блок кнопок -->
+    <div class="spreads-menu">
+  <div class="spread-card active" data-spread="individual" data-positions="1,2,3,4,5,6,7,8,12,13,14,19,20,21">
+    <div class="spread-icon">👤</div>
+    <h3>Индивидуальный портрет</h3>
+  </div>
+  <div class="spread-card" data-spread="shadow" data-positions="4.1,22,23,24,25,26,27,28,28.1,29">
+    <div class="spread-icon">🌑</div>
+    <h3>Теневой портрет</h3>
+  </div>
+  <div class="spread-card" data-spread="karma" data-positions="2.1,9,10,11,15,15.1,16,17,18">
+    <div class="spread-icon">🔄</div>
+    <h3>Кармический портрет</h3>
+  </div>
+</div>
+    
+    <div class="container">
+        <h1>🔮 Индивидуальный портрет личности</h1>
+        
+        <!-- Блок ввода даты (оставляем без изменений) -->
+        <div class="input-section">
+            <h3 id="dateb">Введите дату рождения:</h3>
+            <div class="date-input-container">
+                <input type="text" id="birthDate" placeholder="ДД.ММ.ГГГГ" maxlength="10" readonly>
+                <span class="date-icon">📅</span>
+                <div class="date-hint">Формат: ДД.ММ.ГГГГ</div>
+            </div>
+            <button id="calculateBtn">Рассчитать</button>
+            <div class="note">
+                <!-- это прошлый класс р1. потом пересмотреть в css и поменять названия. -->
+                <p class="p1">Расклад основан на трактовке Старших Арканов</p> 
+            </div>
+        </div>
+        
+        <!-- Блок результатов -->
+        <div class="result-section" id="result">
+            <div class="cards-grid">
+                <!-- Существующие карточки 1-14 (оставляем без изменений) --> 
+                <!-- Карточка 1 -->  <!-- ind -->
+                <div class="card" id="pos1-card">
+                    <h3>1. Детство и Юность (до 25 лет)</h3>
+                    <div class="full-description">
+                        <p>Позиция 1 - Базовая энергия. .</p>
+                    </div>
+                </div>
+                <!-- ind -->
+                <div class="card" id="pos2-card">
+                    <h3>2. Зрелость (25-40 лет)</h3>
+                    <p class="position-description">Ключевой жизненный урок этого периода.</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 2 - Зрелость (25-40 лет). Уроки и Задачи этого воплощения.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos2-result"></div>
+                </div>
+
+                    <!-- Карточка 2.1 --> <!-- karma -->
+                <div class="card" id="pos2.1-card">
+                    <h3>2.1. Зрелость (25-40 лет)</h3>
+                    <p class="position-description">Ключевой жизненный урок этого периода.</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 2.1 - Кармические долги и задачи.Lorem ipsum dolor sit amet,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                         Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos2.1-result"></div>
+                </div>
+                
+                <!-- Карточка 3 --><!-- ind -->
+                <div class="card" id="pos3-card">
+                    <h3>3. Мудрость (40+ лет) Экзамен.</h3>
+                    <p class="position-description">Итоговая мудрость и духовные достижения.</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 3 - Мудрость (40+ лет). Этот период связан с подведением итогов, передачей опыта и осмыслением прожитой жизни. Карта на этой позиции показывает, к какой мудрости вы придёте в зрелом возрасте, какие духовные уроки усвоите и какими достижениями сможете гордиться.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos3-result"></div>
+                </div>
+                
+                <!-- Карточка 4 --><!-- ind -->
+                <div class="card" id="pos4-card">
+                    <h3>4. Подсознание, страхи и комплексы</h3>
+                    <p class="position-description">Детские травмы и ограничивающие установки</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 4 - Проблемная зона детства. Показывает основные трудности, с которыми вы столкнулись в детстве, и ограничивающие убеждения, сформированные в этот период. Эти проблемы могут влиять на вашу взрослую жизнь, пока вы не осознаете и не проработаете их.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos4-result"></div>
+                </div>
+
+                <!-- Карточка 4.1 --><!-- shadow -->
+                <div class="card" id="pos4.1-card">
+                    <h3>4.1 Детские и подростковые травмы</h3>
+                    <p class="position-description">Ключевой жизненный урок этого периода.</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 4.1 - Детские травмы. Этот период характеризуется активным взаимодействием с миром, построением карьеры и семьи. Карта на этой позиции показывает основной урок, который вам предстоит усвоить в этот период. Это время испытаний и проверки на прочность всех убеждений, сформированных в юности.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos4.1-result"></div>
+                </div>
+                
+                <!-- Карточка 5 --><!-- ind -->
+                <div class="card" id="pos5-card">
+                    <h3>5. Сознание, цели, стремления</h3>
+                    <p class="position-description">Вызовы и уроки старшего возраста</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 5 - Треугольник Старости. Показывает основные вызовы и уроки, с которыми вы столкнётесь в пожилом возрасте. Это также может указывать на вашу кармическую задачу в отношении старшего поколения.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos5-result"></div>
+                </div>
+                
+                <!-- Карточка 6 --><!-- ind -->
+                <div class="card" id="pos6-card">
+                    <h3>6. Сверхнознание и скрытие таланты </h3>
+                    <p class="position-description">Незавершенные задачи из прошлых воплощений</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 6 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.></p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos6-result"></div>
+                </div>
+                
+                <!-- Карточка 7 --><!-- ind -->
+                <div class="card" id="pos7-card">
+                    <h3>7. Миссия Воплощения</h3>
+                    <p class="position-description">Миссия человека в этой жизни</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 7 - ваша миссия Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.>.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos7-result"></div>
+                </div>
+                
+                <!-- Карточка 8 --><!-- ind -->
+                <div class="card" id="pos8-card">
+                    <h3>8. Дары свыше</h3>
+                    <p class="position-description">Скрытые способности, которые нужно раскрыть</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 8 - Скрытый ресурс и Дары. Указывает на ваши скрытые способности и таланты, которые пока не проявлены в полной мере, но могут стать мощным ресурсом при их раскрытии. Часто это качества, которые мы в себе не признаём или недооцениваем.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos8-result"></div>
+                </div>
+                
+                <!-- Карточка 9 --><!-- karma -->
+                <div class="card" id="pos9-card">
+                    <h3>9. Прошлая жизнь</h3>
+                    <p class="position-description">Кем был человек в прошлой жизни</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 9 - Прошлая жизнь Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.>.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos9-result"></div>
+                </div>
+
+                
+                <!-- Карточка 10 --><!-- karma -->
+                <div class="card" id="pos10-card">
+                    <h3>10. Род деятельности в прошлом</h3>
+                    <p class="position-description">Какая профессия была у вас в прошлом</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 10 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.></p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos10-result"></div>
+                </div>
+                
+                <!-- Карточка 11 --><!-- karma -->
+                <div class="card" id="pos11-card">
+                    <h3>11. Кармический долг</h3>
+                    <p class="position-description">Задачи, которые тянутся с прошлой жизни</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 11 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.laborum>.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos11-result"></div>
+                </div>
+                
+                <!-- Карточка 12 --><!-- ind -->
+                <div class="card" id="pos12-card">
+                    <h3>12. Зоны Гармониик</h3>
+                    <p class="position-description">Зоны гармонии и дисгармонии</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 12 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.>.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos12-result"></div>
+                </div>
+                
+                <!-- Карточка 13 --><!-- ind -->
+                <div class="card" id="pos13-card">
+                    <h3>13. Внутреннее восприятие</h3>
+                    <p class="position-description">Внутренняя самооценка</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 13 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.></p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos13-result"></div>
+                </div>
+                
+                <!-- Карточка 14 --><!-- ind -->
+                <div class="card" id="pos14-card">
+                    <h3>14. Внешнее восприятие </h3>
+                    <p class="position-description">Как вас воспринимают окружающие</p>
+                    <div class="full-description hidden">
+                        <p>Позиция 14 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.></p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos14-result"></div>
+                </div>
+
+                <!-- Позиция 15 --><!-- karma -->
+                <div class="card" id="pos15-card" style="display: none;">
+                    <h3>15. Способы проработки кармы</h3>
+                    <p class="position-description">Как выполнить прошлые задачи в этой жизни</p>
+                    <div class="full-description hidden">
+                        <p>Показывает баланс между кармическими задачами и их реализацией.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos15-result"></div>
+                </div>
+                
+                <!-- Позиция 15.1 --><!-- karma -->
+                <div class="card" id="pos15.1-card" style="display: none;">
+                    <h3>15.1. Позиция 15А. Кармическое прошлое.</h3>
+                    <p class="position-description">Кем вы были в прошлом.</p>
+                    <div class="full-description hidden">
+                        <p>Показывает основной кармический вызов, который нужно преодолеть.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos15.1-result"></div>
+                </div>
+                
+                <!-- Позиция 16 --><!-- karma -->
+                <div class="card" id="pos16-card" style="display: none;">
+                    <h3>16. Кармические "грабли"</h3>
+                    <p class="position-description">Точка зацикленности уроков</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos16-result"></div>
+                </div>
+
+                     <!-- Позиция 17 --><!-- karma -->
+                <div class="card" id="pos17-card" style="display: none;">
+                    <h3>17. Зона комфорта</h3>
+                    <p class="position-description">Психологический комфорт в прошлой жизни и проблемы с ним</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos17-result"></div>
+                </div>
+
+                     <!-- Позиция 18 --><!-- karma -->
+                <div class="card" id="pos18-card" style="display: none;">
+                    <h3>18. Работа с Миссией</h3>
+                    <p class="position-description">Как выполнить миссию в этой жизни</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos18-result"></div>
+                </div>
+
+                <!-- ind --><!-- позиция 19 -->
+                <div class="card" id="pos19-card" style="display: none;">
+                    <h3>19. Неосознанный страх</h3>
+                    <p class="position-description">Подсознательные блоки восприятия и страхи</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos19-result"></div>
+                </div>
+                <!-- ind --><!-- позиция 20 -->
+                <div class="card" id="pos20-card" style="display: none;">
+                    <h3>20. Экстренные условия</h3>
+                    <p class="position-description"> ЧП и помощь ВЫсших Сил вместе с вашими возможностями</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos20-result"></div>
+                </div>
+
+                <!-- ind --><!-- позиция 21 -->
+                <div class="card" id="pos21-card" style="display: none;">
+                    <h3>21. Максимум Жизни</h3>
+                    <p class="position-description">Предельная точка, апофеоз возможностей</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos21-result"></div>
+                </div>
+
+                <!-- Карточка 22 --><!-- shadow -->
+                <div class="card" id="pos22-card" style="display: none;">
+                    <h3>22. Влияние на подсознание</h3>
+                    <p class="position-description">Позиция А</p>
+                    <div class="full-description hidden">
+                        <p>Показывает вытесненные события, влияющие на настоящее.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos22-result"></div>
+                </div>
+
+                <!-- Карточка 23 --><!-- shadow -->
+                <div class="card" id="pos23-card" style="display: none;">
+                    <h3>23. Детские травмы</h3>
+                    <p class="position-description">Позиция В</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos23-result"></div>
+                </div>
+
+                <!-- Карточка 24 --><!-- shadow -->
+                <div class="card" id="pos24-card" style="display: none;">
+                    <h3>24. Приоритеты и потребности души</h3>
+                    <p class="position-description">Позиция С</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos24-result"></div>
+                </div>
+                        <!-- Карточка 25 --><!-- shadow -->
+                <div class="card" id="pos25-card" style="display: none;">
+                    <h3>25. Влияние на Сознание </h3>
+                    <p class="position-description">Позиция D</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos25-result"></div>
+                </div>
+
+                <!-- Карточка 26 --><!-- shadow -->
+                <div class="card" id="pos26-card" style="display: none;">
+                    <h3>26. Неосознанный Талант и предрасположенность</h3>
+                    <p class="position-description">Позиция Е</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos26-result"></div>
+                </div>
+
+                <!-- Карточка 27 --><!-- shadow -->
+                <div class="card" id="pos27-card" style="display: none;">
+                    <h3>27. Отвергаемое и непринятое . </h3>
+                    <p class="position-description">Позиция F</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos27-result"></div>
+                </div>
+
+                <!-- Карточка 28 --><!-- shadow -->
+                <div class="card" id="pos28-card" style="display: none;">
+                    <h3>28. Первый путь достижения Максимума</h3>
+                    <p class="position-description">Позиция G1</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos28-result"></div>
+                </div>
+
+                <!-- Карточка 28.1 --><!-- shadow -->
+                 <div class="card" id="pos28.1-card" style="display: none;">
+                    <h3>28.1. Второй путь достижения Максимума</h3>
+                    <p class="position-description">Позиция G2</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos28.1-result"></div>
+                </div>
+
+                <!-- Карточка 29 --><!-- shadow -->
+                <div class="card" id="pos29-card" style="display: none;">
+                    <h3>29. Точка "слива". Деструктив</h3>
+                    <p class="position-description">Позиция H</p>
+                    <div class="full-description hidden">
+                        <p>Показывает энергию, полученную от рода и предков.</p>
+                    </div>
+                    <button class="toggle-description">Показать описание</button>
+                    <div class="arcana-result" id="pos29-result"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
